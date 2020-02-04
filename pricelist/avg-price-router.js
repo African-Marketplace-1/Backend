@@ -2,7 +2,7 @@ const router = require('express').Router()
 const Prices = require('./avg-price-model')
 const authenticate = require('../auth/authenticate-middleware')
 
-router.get('/', (req, res) => {
+router.get('/',authenticate, (req, res) => {
     Prices.find()
     .then(category => {
       res.json(category);

@@ -1,15 +1,46 @@
 # Backend
-Web backend for African Marketplace 1
+<h1>Web backend for African Marketplace 1</h1>
 
+<h2>deployed api url:</h2>
+<a>https://african-marketplace-2020.herokuapp.com/</a>
 
-Endpoints:
-
-Avrage pricing list:
-|Method|endpoint|requires|description|
-|---|---|---|---|
-|GET| /api/prices/ | will have authorization header geven when logging in | gets list of prices by category|
-|post| /api/prices/|product_cat, sub_category, product, avg_price | adds a category and price|
-|delete| /api/prices/:id | no requierments | removes a category by id| 
-Authorization: 
-|Method|endpoint|requires|description|
-|---|---|---|---|
+<h1>Authentication and authorization endpoints.</h1>
+<h3>register:</h3>
+<p>/api/auth/register</p>
+<h3>expects an object like:</h3> 
+<p>"{
+	"username": "Testing",
+	"password": "testpass",
+	"profile_pic_url": ""
+}"</p>
+<br>
+<h3>login:</h3>
+<p>/api/auth/login</p>
+<h3>expects an object like</h3> 
+<p>"{
+	"username": "Testing",
+	"password": "testpass"
+}"</p>
+<br>
+<br>
+<h1>Average pricelist endpoints.</h1>
+<h3>Get average price list:</h3>
+<p>/api/prices</p>
+<h3>Post to average price list:</h3>
+<p>/api/prices</p>
+<h3>expects an object like</h3>
+<p> "{
+	"product_cat": "Other",
+	"sub_category": "Alcohol",
+	"product": "Corn vodka 150 proof",
+	"avg_price": 35
+}"</p>
+<h3>Delete from average price list:</h3>
+<p>/api/prices/:id</p>
+<br>
+<br>
+<h1>Listing endpoints.<h1>
+<h3>GET all listings:</h3>
+<p>/api/listings</p>
+<h3>Get Listing by id</h3>
+<p>/api/listings/:id</p>
