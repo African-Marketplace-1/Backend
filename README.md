@@ -4,23 +4,26 @@
 <h2>deployed api url:</h2>
 <a>https://african-marketplace-2020.herokuapp.com/</a>
 
-
+<h1>Authentication and authorization endpoints.</h1>
 <h3>register:</h3>
-<p>/api/register</p>
+<p>/api/auth/register</p>
 <h3>expects an object like:</h3> 
 <p>"{
 	"username": "Testing",
 	"password": "testpass",
 	"profile_pic_url": ""
 }"</p>
-
+<br>
 <h3>login:</h3>
-<p>/api/login</p>
+<p>/api/auth/login</p>
 <h3>expects an object like</h3> 
 <p>"{
 	"username": "Testing",
 	"password": "testpass"
 }"</p>
+<br>
+<br>
+<h1>Average pricelist endpoints.</h1>
 <h3>Get average price list:</h3>
 <p>/api/prices</p>
 <h3>Post to average price list:</h3>
@@ -34,5 +37,10 @@
 }"</p>
 <h3>Delete from average price list:</h3>
 <p>/api/prices/:id</p>
-
-
+<br>
+<br>
+<h1>Listing endpoints.<h1>
+<h3>GET all listings:</h3>
+<p>/api/listings</p>
+<h3>Get Listing by id</h3>
+<p>/api/listings/:id</p>

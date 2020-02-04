@@ -2,29 +2,20 @@ const db = require('../dbConfig')
 
 module.exports = {
     find,
-    add,
-    update,
-    remove
+    findById,
 }
 
 function find(){
-    return db('listings')
+    return db('listings').orderBy('listings.id')
+    .join('users','users.id', 'user_id')
+    .select('listings.id','users.username', 'location','item','description','price')
 }
 
-function add (scheme){
-    return db('listings')
-        .insert(scheme, 'id')
-        .then(ids => ({ id: ids[0] }))
-}
 
-function update (listing, id){
+function findById(id){
     return db('listings')
-        .where('id', Number(id))
-        .update(listing)
-}
-
-function remove (id) {
-    return db('listings')
-    .where('id', Number(id))
-    .del();
+    .join('users','users.id', 'user_id')
+    .select('listings.id','users.username', 'location','item','description','price')
+    .where('listings.id',id)
+    .first()
 }
