@@ -6,12 +6,15 @@ const helmet = require('helmet')
 
 const authRouter = require('./auth/auth-router')
 const avgPriceRouter = require('./pricelist/avg-price-router')
+const listingRouter = require('./listings/listings-router')
+
+server.use(express.json())
 server.use(cors())
 server.use(helmet())
-server.use(express.json())
 
 server.use('/api/auth', authRouter)
 server.use('/api/prices',avgPriceRouter )
+server.use('/api/listings',listingRouter)
 
 server.get('/',(req,res)=>{
     res.send('Server Running')
