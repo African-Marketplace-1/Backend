@@ -26,7 +26,8 @@ router.post('/register', (req, res) => {
           .then(user => {
               if (user && bc.compareSync(password, user.password)) {
                   const token = generateToken(user)
-                  res.status(200).json({ message: `Welcome ${user.username}!`, token});
+                  const user_id = user.id
+                  res.status(200).json({ message: `Welcome ${user.username}!`, token, user_id});
               } else {
                   res.status(401).json({ message: "Invalid Credentials" });
               }
