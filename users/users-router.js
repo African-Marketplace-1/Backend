@@ -1,8 +1,20 @@
 const router = require('express').Router()
 const Users = require('./users-model')
 const Listings = require('../listings/listings-model')
+const authenticate = require('../auth/authenticate-middleware')
 
-router.get('/:id', (req,res)=>{
+
+router.get('/', (req, res) => {
+    Users.find()
+    .then(users => {
+      res.json(users);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to get all users' });
+    });
+  });
+
+router.get('/:id',authenticate, (req,res)=>{
     Users.findById(req.params.id)
     .then(user=>{
         res.status(200).json(user)
@@ -13,7 +25,7 @@ router.get('/:id', (req,res)=>{
     })
 })
 
-router.get('/:id/listings', (req, res) => {
+router.get('/:id/listings',authenticate,(req, res) => {
     Listings.findBy(req.params.id, 'user_id')
         .then(listings => {
             res.status(200).json(listings);
@@ -24,7 +36,7 @@ router.get('/:id/listings', (req, res) => {
         })
 })
 
-router.post('/:id/listings', (req, res) => {
+router.post('/:id/listings',authenticate,(req, res) => {
     Listings.add(req.params.id,req.body)
         .then(listing => {
             res.status(200).json(listing);
@@ -36,7 +48,7 @@ router.post('/:id/listings', (req, res) => {
 })
 
 
-router.put('/:id/listings/:id', (req, res) => {
+router.put('/:id/listings/:id',authenticate,(req, res) => {
     Listings.updateListing(req.body, req.params.id)
         .then(updated => {
             res.status(200).json({message: 'the listing has been updated'});
@@ -47,7 +59,7 @@ router.put('/:id/listings/:id', (req, res) => {
         })
 })
 
-router.delete('/:id/listings/:id',(req, res) => {
+router.delete('/:id/listings/:id',authenticate,(req, res) => {
     Listings.remove(req.params.id)
         .then(num => {
             if(num > 0) {
