@@ -12,7 +12,7 @@ router.get('/',authenticate, (req, res) => {
     });
   });
 
-  router.post('/', (req, res) => {
+  router.post('/',authenticate, (req, res) => {
     const priceData = req.body;
   
     Prices.add(priceData)
@@ -25,7 +25,7 @@ router.get('/',authenticate, (req, res) => {
     });
   });
 
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id',authenticate, (req, res) => {
     const { id } = req.params;
   
     Prices.remove(id)
