@@ -4,7 +4,7 @@
   "description": "Web backend for African Marketplace 1",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env DB_ENV=testing jest --watch",
+    "test": "cross-env DB_ENV=testing jest --watch --verbose --runInBand",
     "server": "nodemon index.js",
     "start": "node index.js"
   },
